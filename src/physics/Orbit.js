@@ -12,15 +12,14 @@ export default {
         // SEQUENCE OF ANGLES - creates an array of 80 values from -pi to pi radians
 
         const numOfPts = 80;
-        
 
-        console.log(Array.from({length: numOfPts}, (v, i) => {
+        return Array.from({length: numOfPts}, (v, i) => {
             const p = -Math.PI + (i * (2* Math.PI) / (numOfPts - 1))
             return { 
                 x: a * Math.cos(p) - e,
                 y: a * Math.sqrt(1 - Math.pow(e, 2)) * Math.sin(p),
                 z: 0,
             }
-        }));
+        });
     }
 }
