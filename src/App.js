@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box } from '@react-three/drei';
 import '@/components/3D/instances/Orbit'
-//import Orbit from './components/3D/instances/Orbit';
+import Orbit from './components/3D/instances/Orbit';
 import CelesObj from './components/3D/instances/CelesObj';
 import PlanetConsts from './data/PlanetConsts';
 
@@ -23,12 +23,15 @@ function App() {
             <CelesObj radius={sunRadius} />
 
             {/* Example 3D Objects */}
-            {/* Object.entries(PlanetConsts.orbit).map(([key, value]) => (<Orbit focus={[0,0,0]} 
+            {Object.entries(PlanetConsts.orbit).map(([key, value]) => (<Orbit focus={[0,0,0]} 
                 semiMajorAxis={value.semiMajorAxis}
                 eccentricity={value.eccentricity}
+                inclination={value.inclination}
+                meanLongitude={value.meanLongitude}
+                ascendingNodeLongitude={value.ascendingNodeLongitude}
             >
                 <CelesObj radius={value.radius}/>
-            </Orbit>) )*/
+            </Orbit>) )
             }
         </Canvas>
     );

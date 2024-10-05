@@ -1,6 +1,14 @@
+import * as THREE from 'three'
 
 export default {
-    getOrbitEllipse: (focus, semiMajorAxis, eccentricity) => {
+    getOrbitEllipse: (
+        focus, 
+        semiMajorAxis, 
+        eccentricity, 
+        inclination,
+        meanLongitude,
+        ascendingNodeLongitude
+    ) => {
         const a = semiMajorAxis; //semi major axis of earth in AU
         const e = eccentricity; //eccentricity of earth's orbit
         const b = a * Math.sqrt(1 - Math.pow(e, 2)); //semi minor axis
@@ -28,16 +36,13 @@ export default {
                 0
             ]
 
-            const v3 = THREE.Vector3(...cord);
+            const v3 = new THREE.Vector3(...cord);
 
-            v3.rotateOnAxis(yAxis, inclination*(Math.PI/180));
-            v3.rotateOnAxis(zAxis, meanLongitude*(Math.PI/180));
-            v3.rotateOnAxis(xAxis, ascendingNodeLongitude*(Math.PI/180));
+            v3.applyAxisAngle(yAxis, inclination*(Math.PI/180));
+            v3.applyAxisAngle(zAxis, meanLongitude*(Math.PI/180));
+            v3.applyAxisAngle(xAxis, ascendingNodeLongitude*(Math.PI/180));
 
             return v3
         });
-    
-
-
     },
 }

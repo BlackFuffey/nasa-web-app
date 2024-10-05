@@ -6,17 +6,27 @@ import OrbitPhysics from '@/physics/Orbit'
 export default function Orbit({
     focus = [0, 0, 0],
     semiMajorAxis = 10, // "a" - Semi-major axis
-    eccentricity = 0.5, // Elliptical eccentricity
+    eccentricity = 0.5, // Elliptical eccentricityocus, 
+    inclination,
+    meanLongitude,
+    ascendingNodeLongitude,
     children, // Children (planets) to be placed on the orbit
 }) {
     const child = React.Children.only(children);
-    const orbPoints = OrbitPhysics.getOrbitEllipse(focus, semiMajorAxis, eccentricity);
+    const orbPoints = OrbitPhysics.getOrbitEllipse(
+        focus, 
+        semiMajorAxis, 
+        eccentricity,
+        inclination,
+        meanLongitude,
+        ascendingNodeLongitude
+    );
 
     return (
         <group>
             {/* Draw the elliptical orbit */}
             <Line
-                points={orbPoints.map(p => new THREE.Vector3(...p))} // The points array for the orbit
+                points={orbPoints} // The points array for the orbit
                 color={'blue'}
                 transparent={true}
                 opacity={0.5}
@@ -24,16 +34,11 @@ export default function Orbit({
             />
 
             {/* Place each child (planet) on the orbit */}
-            {(() => {
-                const pointIndex = (1 / numPlanets) * orbPoints.length;  // Position the planet based on the orbit points array
-                const [x, y, z] = orbPoints[Math.floor(pointIndex)] || [0, 0, 0];
+            {
+                React.cloneElement(child, { position: [orbPoints[0].x, orbPoints[0].y, orbPoints[0].z] })
+            }
+            {                console.log({orb: orbPoints[0], child})}
 
-                return (
-                    <group position={[x, y, z]}>
-                        {React.cloneElement(child, { position: [0, 0, 0] })}
-                    </group>
-                );
-            })}
         </group>
     );
 }
