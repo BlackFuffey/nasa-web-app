@@ -1,0 +1,7 @@
+const services = {
+    NEOData: {
+        fetchNEOData: () => {
+
+        },
+    },
+}
