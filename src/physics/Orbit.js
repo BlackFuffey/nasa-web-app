@@ -9,7 +9,9 @@ export default {
         let [yc, zc] = focus;
         let xc = -c;
 
-
+        const xAxis = new THREE.Vector3(1, 0, 0);
+        const yAxis = new THREE.Vector3(0, 1, 0);
+        const zAxis = new THREE.Vector3(0, 0, 1);
 
         
 
@@ -26,16 +28,16 @@ export default {
                 0
             ]
 
-            let v3 = THREE.Vector3(...cord);
+            const v3 = THREE.Vector3(...cord);
 
-            const rotatePoints
+            v3.rotateOnAxis(yAxis, inclination*(Math.PI/180));
+            v3.rotateOnAxis(zAxis, meanLongitude*(Math.PI/180));
+            v3.rotateOnAxis(xAxis, ascendingNodeLongitude*(Math.PI/180));
 
-
+            return v3
         });
     
 
 
     },
-
-    getOrbitRotation: () => {}
 }
