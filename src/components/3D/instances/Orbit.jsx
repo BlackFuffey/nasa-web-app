@@ -9,7 +9,7 @@ export default function Orbit({
     eccentricity = 0.5, // Elliptical eccentricity
     children, // Children (planets) to be placed on the orbit
 }) {
-    const numPlanets = React.Children.count(children);
+    const child = React.Children.only(children);
     const orbPoints = OrbitPhysics.getOrbitEllipse(focus, semiMajorAxis, eccentricity);
 
     return (
@@ -24,8 +24,8 @@ export default function Orbit({
             />
 
             {/* Place each child (planet) on the orbit */}
-            {React.Children.map(children, (child, index) => {
-                const pointIndex = (index / numPlanets) * orbPoints.length;  // Position the planet based on the orbit points array
+            {(() => {
+                const pointIndex = (1 / numPlanets) * orbPoints.length;  // Position the planet based on the orbit points array
                 const [x, y, z] = orbPoints[Math.floor(pointIndex)] || [0, 0, 0];
 
                 return (
