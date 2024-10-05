@@ -19,6 +19,7 @@ export default {
 
         return Array.from({length: numOfPts}, (v, i) => {
             const p = -Math.PI + (i * (2* Math.PI) / (numOfPts - 1))
+<<<<<<< HEAD
             const cords = [
                 a * Math.cos(p) - e,
                 a * Math.sqrt(1 - Math.pow(e, 2)) * Math.sin(p),
@@ -30,6 +31,15 @@ export default {
             
 
 
+=======
+            const cord = [ 
+                a * Math.cos(p) - e,
+                a * Math.sqrt(1 - Math.pow(e, 2)) * Math.sin(p),
+                0
+            ]
+
+            let v3 = THREE.Vector3(...cord);
+>>>>>>> 12d8e68107fded5c9008967ab553bd3e44786c4a
         });
     
 
