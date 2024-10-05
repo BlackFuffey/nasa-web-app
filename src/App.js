@@ -2,6 +2,7 @@ import '@/style/App.css';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box } from '@react-three/drei';
+import '@/components/3D/instances/Orbit'
 
 function App() {
   return (
