@@ -1,4 +1,4 @@
-[
+export default [
     {
       "object": "P/2004 R1 (McNaught)",
       "epoch_tdb": "54629",

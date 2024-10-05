@@ -3,12 +3,13 @@ import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box } from '@react-three/drei';
 import '@/components/3D/instances/Orbit'
-import Orbit from './components/3D/instances/Orbit';
-import Services from './service/service.js';
-import Earth from './components/3D/instances/CelesObj';
+//import Orbit from './components/3D/instances/Orbit';
+import CelesObj from './components/3D/instances/CelesObj';
+import PlanetConsts from './data/PlanetConsts';
 
 function App() {
-    const planetConstRef = useRef(Services.getPlanetConst().orbit);
+    
+    const sunRadius = 0.004649183820514384;
 
     return (
         <Canvas className="h-[100vh]">
@@ -19,12 +20,15 @@ function App() {
             {/* Orbit Controls */}
             <OrbitControls />
 
+            <CelesObj radius={sunRadius} />
+
             {/* Example 3D Objects */}
-            { Object.entries(planetConstRef.current).map(([key, value]) => (<Orbit focus={[0,0,0]} 
+            {/* Object.entries(PlanetConsts.orbit).map(([key, value]) => (<Orbit focus={[0,0,0]} 
                 semiMajorAxis={value.semiMajorAxis}
                 eccentricity={value.eccentricity}
             >
-            </Orbit>))
+                <CelesObj radius={value.radius}/>
+            </Orbit>) )*/
             }
         </Canvas>
     );
