@@ -10,8 +10,10 @@ export default function Orbit({
     inclination,
     meanLongitude,
     ascendingNodeLongitude,
+    color='black',
     children, // Children (planets) to be placed on the orbit
 }) {
+    console.log({semiMajorAxis, eccentricity, inclination, meanLongitude, ascendingNodeLongitude})
     const child = React.Children.only(children);
     const orbPoints = OrbitPhysics.getOrbitEllipse(
         focus, 
@@ -27,7 +29,7 @@ export default function Orbit({
             {/* Draw the elliptical orbit */}
             <Line
                 points={orbPoints} // The points array for the orbit
-                color={'blue'}
+                color={color}
                 transparent={true}
                 opacity={0.5}
                 lineWidth={1}
@@ -37,7 +39,7 @@ export default function Orbit({
             {
                 React.cloneElement(child, { position: [orbPoints[0].x, orbPoints[0].y, orbPoints[0].z] })
             }
-            {                console.log({orb: orbPoints[0], child})}
+            {                console.log({color, orb: orbPoints[0]})}
 
         </group>
     );
