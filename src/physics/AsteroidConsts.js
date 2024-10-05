@@ -1,4 +1,4 @@
-return {
+export default {
     orbit: {
         eros: {
             semiMajorAxis: 1.458,

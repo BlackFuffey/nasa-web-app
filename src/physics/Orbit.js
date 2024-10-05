@@ -15,11 +15,11 @@ export default {
 
         return Array.from({length: numOfPts}, (v, i) => {
             const p = -Math.PI + (i * (2* Math.PI) / (numOfPts - 1))
-            return { 
-                x: a * Math.cos(p) - e,
-                y: a * Math.sqrt(1 - Math.pow(e, 2)) * Math.sin(p),
-                z: 0,
-            }
+            return [ 
+                a * Math.cos(p) - e,
+                a * Math.sqrt(1 - Math.pow(e, 2)) * Math.sin(p),
+                0
+            ]
         });
     }
 }

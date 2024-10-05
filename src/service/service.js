@@ -4,9 +4,10 @@ const Services = {
     // preload all data
     preLoad: async () => {
         data = {
-            comets: (await fetch("/data/comets.json")).json(),
-            planets: (await fetch("/data/planets.json")).json(),
+            comets: await (await fetch("/data/comets.json")).json(),
+            planets: await (await fetch("/data/planets.json")).json(),
         }
+        console.log(data);
     },
 
     getCometConst: () => data.comets,

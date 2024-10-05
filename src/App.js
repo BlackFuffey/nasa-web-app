@@ -8,7 +8,7 @@ import Services from './service/service.js';
 import Earth from './components/3D/instances/Earth';
 
 function App() {
-    const earthConstRef = useRef(Services.getPlanetConst().earth);
+    const planetConstRef = useRef(Services.getPlanetConst().orbit);
 
   return (
     <Canvas className="h-[100vh]">
@@ -20,12 +20,12 @@ function App() {
       <OrbitControls />
 
       {/* Example 3D Objects */}
-      <Orbit focus={[0,0,0]} 
-        semiMajorAxis={earthConstRef.current.semiMajorAxis}
-        eccentricity={earthConstRef.current.eccentricity}
+      { Object.entries(planetConstRef.current).map(([key, value]) => (<Orbit focus={[0,0,0]} 
+        semiMajorAxis={value.semiMajorAxis}
+        eccentricity={value.eccentricity}
         >
-            <Earth position={[1,1,1]} />
-        </Orbit>
+        </Orbit>))
+            }
     </Canvas>
   );
 }
