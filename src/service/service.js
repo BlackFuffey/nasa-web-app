@@ -1,16 +1,18 @@
+let data;
 
-let comets;
-
-
-
-const services = {
+const Services = {
     // preload all data
     preLoad: async () => {
-        comets = (await fetch("/data/comets.json")).json();
+        data = {
+            comets: (await fetch("/data/comets.json")).json(),
+            planets: (await fetch("/data/planets.json")).json(),
+        }
     },
 
-    getCometData: () => comets
+    getCometConst: () => data.comets,
+
+    getPlanetConst: () => data.planets
 
 }
 
-export default services;
+export default Services;

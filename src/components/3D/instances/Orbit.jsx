@@ -25,11 +25,8 @@ export default function Orbit({
 
             {/* Place each child (planet) on the orbit */}
             {React.Children.map(children, (child, index) => {
-                const angle = (index / numPlanets) * Math.PI * 2; // Distribute planets evenly
-                const x =
-                    semiMajorAxis * offsetFactor * Math.cos(angle) - focusDistance;
-                const y = 0;
-                const z = semiMinorAxis * offsetFactor * Math.sin(angle);
+                const pointIndex = (index / numPlanets) * orbPoints.length;  // Position the planet based on the orbit points array
+                const [x, y, z] = orbPoints[Math.floor(pointIndex)] || [0, 0, 0];
 
                 return (
                     <group position={[x, y, z]}>

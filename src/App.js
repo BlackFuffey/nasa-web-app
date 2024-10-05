@@ -1,14 +1,14 @@
 import '@/style/App.css';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box } from '@react-three/drei';
 import '@/components/3D/instances/Orbit'
 import Orbit from './components/3D/instances/Orbit';
-import Service from './service/service.js';
+import Services from './service/service.js';
+import Earth from './components/3D/instances/Earth';
 
 function App() {
-    const [planetData, setPlanetData] = useState(null);
-    useEffect(() => await Service.preLoad())
+    const earthConstRef = useRef(Services.getPlanetConst().earth);
 
   return (
     <Canvas className="h-[100vh]">
@@ -20,7 +20,12 @@ function App() {
       <OrbitControls />
 
       {/* Example 3D Objects */}
-      <Orbit focus={[0,0,0]} semiMajorAxis=Service.
+      <Orbit focus={[0,0,0]} 
+        semiMajorAxis={earthConstRef.current.semiMajorAxis}
+        eccentricity={earthConstRef.current.eccentricity}
+        >
+            <Earth position={[1,1,1]} />
+        </Orbit>
     </Canvas>
   );
 }
