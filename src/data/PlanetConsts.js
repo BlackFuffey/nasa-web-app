@@ -1,4 +1,4 @@
-return {
+export default {
     orbit: {
         mercury: {
             semiMajorAxis: 0.38709927,
