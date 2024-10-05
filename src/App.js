@@ -3,6 +3,7 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box } from '@react-three/drei';
 import '@/components/3D/instances/Orbit'
+import Orbit from './components/3D/instances/Orbit';
 
 function App() {
   return (
@@ -15,12 +16,7 @@ function App() {
       <OrbitControls />
 
       {/* Example 3D Objects */}
-      <Box position={[-1.2, 0, 0]}>
-        <meshStandardMaterial attach="material" color="orange" />
-      </Box>
-      <Sphere position={[1.2, 0, 0]}>
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </Sphere>
+      <Orbit focus={[0,0,0]} semiMajorAxis=
     </Canvas>
   );
 }
