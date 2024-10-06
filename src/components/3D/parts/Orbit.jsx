@@ -32,7 +32,7 @@ export default function Orbit({
         let lastUpdate = 0;
         // Function to update position
         const interval = setInterval(() => {
-            lastUpdate += 0.001157407;
+            lastUpdate += 365/100;
             setPosition(OrbitPhysics.getMotion(
                 semiMajorAxis,
                 eccentricity,
@@ -43,7 +43,7 @@ export default function Orbit({
                 period,
                 lastUpdate
             ));
-        }, 1000);  // Update every 100 milliseconds (0.1 seconds)
+        }, 100);  // Update every 100 milliseconds (0.1 seconds)
 
         // Cleanup interval on component unmount
         return () => clearInterval(interval);

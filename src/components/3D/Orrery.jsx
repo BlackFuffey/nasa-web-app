@@ -32,7 +32,7 @@ export default function() {
             <OrbitControls />
             
             {/* Sun */}
-            {/*<CelesObj radius={sunRadius} color='yellow'/>*/}
+            {<CelesObj radius={sunRadius} color='black'/>}
 
             {/* Planets */}
             {Object.entries(PlanetConsts.orbit).map(([key, value]) => (
