@@ -31,11 +31,20 @@ export default function Orbit({
 
     const historyRef = useRef([]);
 
-    useEffect(() => {
+    const doComputeRef = useRef(true);
+
+    const doCompute = (value) => doComputeRef.current = value;
+
+    useEffect(async () => {
         let lastUpdate = 0;
         // Function to update position
-        const interval = setInterval(() => {
+        const interval = setInterval( async () => {
             lastUpdate += 1;
+            
+            if (!doComputeRef.current) {
+                await new Promise(resolve => setTimeout(resolve, 5000))
+            };
+
             setPosition(() => {
                 const newPos = OrbitPhysics.getMotion(
                     semiMajorAxis,
@@ -49,7 +58,7 @@ export default function Orbit({
 
                 setPosition(newPos)
             })
-        }, 10);  // Update every 100 milliseconds (0.1 seconds)
+        }, 100);  // Update every 100 milliseconds (0.1 seconds)
 
         // Cleanup interval on component unmount
         return () => clearInterval(interval);
@@ -69,7 +78,7 @@ export default function Orbit({
 
             {/* Place each child (planet) on the orbit */}
             {
-                React.cloneElement(child, { position: position})
+                React.cloneElement(child, { position: position, doCompute })
             }
 
             {/* History */}

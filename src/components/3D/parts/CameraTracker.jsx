@@ -1,28 +1,37 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useRef, useState, useEffect } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-export const [ trackObj, setTrackObj ] = useState('sun');
+export let setTrackObj;
 
 export function CameraTracker() {
-  const cameraRef = useRef();
-  const objectToTrack = useRef(null);
+    const cameraRef = useRef();
+    const trackObjRef = useRef('planet-sun');
 
-  useFrame(({ camera, scene }) => {
-    // Find the object in the scene by name
-    const target = scene.getObjectByName(trackObj);
+    const setTrackObjInner = (value) => trackObjRef.current = value
 
-    if (target) {
-      // Make the camera look at the target object
-      camera.lookAt(target.position);
-      
-      // Optionally, update the camera position to follow the target object
-      // (in this case, we keep the camera at a fixed distance on the Z axis)
-      camera.position.lerp(new THREE.Vector3(target.position.x, target.position.y, target.position.z + 5), 0.05);
-      camera.updateProjectionMatrix();
-    }
-  });
+    useEffect(() => window.setTrack = setTrackObjInner, [])
 
-  return <perspectiveCamera ref={cameraRef} position={[0, 0, 5]} />;
+    useEffect(() => setTrackObj = setTrackObjInner, []);
+
+    useFrame(({ camera, scene }) => {
+        // Find the object in the scene by name
+        const target = scene.getObjectByName(trackObjRef.current);
+
+        console.log({scene: scene.children, track: trackObjRef.current, target, camera: cameraRef.current})
+        if (target && cameraRef.current) {
+            // Make the camera look at the target object
+            camera.lookAt(target.position);
+
+            // Optionally, update the camera position to follow the target object
+            // (in this case, we keep the camera at a fixed distance on the Z axis)
+            camera.position.lerp(new THREE.Vector3(target.position.x, target.position.y, target.position.z + 5), 0.1);
+            camera.zoom = THREE.MathUtils.lerp(camera.zoom, 3, 0.1)
+            camera.updateProjectionMatrix();
+        }
+    });
+
+    return <perspectiveCamera ref={cameraRef} position={[0, 0, 0]} />;
 }
+

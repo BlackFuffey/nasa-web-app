@@ -13,6 +13,7 @@ import PlanetConsts from "@/data/PlanetConsts"
 import CometConsts from "@/data/CometConsts"
 import AsteroidConsts from "@/data/AsteroidConsts"
 import { useFrame } from '@react-three/fiber'
+import { setTrackObj } from "../../3D/parts/CameraTracker";
 
 const SearchResultTable = ({ results, onItemClick }) => (
     <Table
@@ -61,11 +62,12 @@ export default function() {
     }, [searchContent])
 
     const teleport = (name) => {
-
+        console.log('teleporting to '+name);
+        setTrackObj(name);
     }
 
     return (
-        <div className="h-auto w-[35vw] space-y-1">
+        <div className="h-auto w-[35vw] space-y-1 pointer-event-auto">
             <Input
                 size="md"
                 placeholder="Search for celestial object"
@@ -76,13 +78,12 @@ export default function() {
                 onBlur={() => setShowSearch(false)}
                 className="w-full pointer-events-auto bg-transparent"
                 startContent={
-                    <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                    <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 flex-shrink-0" />
                 }
             />
             { showSearch ? (
                 <Table 
                     isHeaderSticky
-                    selectionMode="single"
                     aria-label="Example static collection table"
                     className="pointer-events-auto"
                     classNames={{
@@ -93,12 +94,12 @@ export default function() {
                         <TableColumn>Name</TableColumn>
                         <TableColumn>Type</TableColumn>
                     </TableHeader>
-                    <TableBody emptyContent="No object found">
+                    <TableBody emptyContent="No object found" className='pointer-events-auto'>
                         {searchRes.map(e => (
                             <TableRow 
-                                className="text-white" 
+                                className="text-white pointer-events-auto" 
                                 key={`search-${Math.random().toString(36).substring(2, 8)}`}
-                                onClick={() => teleport(e.name)}
+                                onMouseDown={() => teleport(`${e.type.toLowerCase()}-${e.name}`)}
                             >
                                 <TableCell>{e.name}</TableCell>
                                 <TableCell>{e.type}</TableCell>

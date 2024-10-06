@@ -7,6 +7,7 @@ import AsteroidConsts from '@/data/AsteroidConsts';
 import CometConsts from '@/data/CometConsts';
 import Skybox from './parts/Skybox';
 import { AxesHelper } from 'three';
+import { CameraTracker } from './parts/CameraTracker';
 
 export default function() {
     const sunRadius = 0.004649183820514384;
@@ -29,12 +30,11 @@ export default function() {
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
 
-            {/* Orbit Controls */}
             <OrbitControls />
-            <axesHelper args={[5]} />
-            
+            <CameraTracker />
+
             {/* Sun */}
-            {<CelesObj name="sun" radius={sunRadius} color='yellow'/>}
+            {<CelesObj name="planet-sun" radius={sunRadius} color='yellow'/>}
 
             {/* Planets */}
             {Object.entries(PlanetConsts.orbit).map(([key, value]) => (
