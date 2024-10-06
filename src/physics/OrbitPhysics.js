@@ -85,9 +85,9 @@ export default {
         const r = a * (1 - e * Math.cos(E));
 
         //position of object in 3D space
-        const x = r * (Math.cos(Ω) * Math.cos(w + ν) - Math.sin(Ω) * Math.sin(w + ν) * Math.cos(i));
-        const y = r * (Math.cos(Ω) * Math.cos(w + ν) + Math.sin(Ω) * Math.sin(w + ν) * Math.cos(i));
-        const z = r * (Math.sin(i) * Math.sin(w + ν));
+        const x = r * (Math.cos(Ω) * Math.cos(w + v) - Math.sin(Ω) * Math.sin(w + v) * Math.cos(i));
+        const y = r * (Math.cos(Ω) * Math.cos(w + v) + Math.sin(Ω) * Math.sin(w + v) * Math.cos(i));
+        const z = r * (Math.sin(i) * Math.sin(w + v));
 
 
         return [x, y, z];

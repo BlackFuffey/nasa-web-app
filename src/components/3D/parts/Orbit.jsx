@@ -11,9 +11,11 @@ export default function Orbit({
     meanLongitude,
     ascendingNodeLongitude,
     color='black',
+    meanAnonmalyAtEpoch,
+    period,
     children, // Children (planets) to be placed on the orbit
 }) {
-    console.log({semiMajorAxis, eccentricity, inclination, meanLongitude, ascendingNodeLongitude})
+    useEffect(() => console.log({focus, semiMajorAxis, eccentricity, inclination, meanLongitude, ascendingNodeLongitude, meanAnonmalyAtEpoch, period}), [])
     const child = React.Children.only(children);
     const orbPoints = OrbitPhysics.getOrbitEllipse(
         focus, 
@@ -22,7 +24,6 @@ export default function Orbit({
         inclination,
         meanLongitude,
         ascendingNodeLongitude,
-        period
     );
 
     const [position, setPosition] = useState([orbPoints[0].x, orbPoints[0].y, orbPoints[0].z]);
@@ -31,17 +32,18 @@ export default function Orbit({
         let lastUpdate = 0;
         // Function to update position
         const interval = setInterval(() => {
-            lastUpdate += 0.00001157407;
+            lastUpdate += 0.001157407;
             setPosition(OrbitPhysics.getMotion(
                 semiMajorAxis,
                 eccentricity,
+                inclination,
                 ascendingNodeLongitude,
                 meanLongitude,
                 meanAnonmalyAtEpoch,
                 period,
                 lastUpdate
             ));
-        }, 100);  // Update every 100 milliseconds (0.1 seconds)
+        }, 1000);  // Update every 100 milliseconds (0.1 seconds)
 
         // Cleanup interval on component unmount
         return () => clearInterval(interval);
@@ -62,7 +64,7 @@ export default function Orbit({
             {
                 React.cloneElement(child, { position: position})
             }
-            {                console.log({color, orb: orbPoints[0]})}
+            {              console.log(position)  }
 
         </group>
     );
