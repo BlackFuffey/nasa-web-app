@@ -1,4 +1,4 @@
-/*import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default {
     getMotion: (
@@ -14,7 +14,7 @@ export default {
         const kepletOrbit = (orbitalElements, timeElapsed) => {
             const [position, setPosition] = useState([0,0,0]);
 
-            useEffect() => {
+            useEffect(() => {
                 const a = semiMajorAxis;
                 const e = eccentricity;
                 const i = inclination;
@@ -45,9 +45,14 @@ export default {
                 //position of object in 3D space
                 const x = r * (Math.cos(Ω) * Math.cos(w + ν) - Math.sin(Ω) * Math.sin(w + ν) * Math.cos(i));
                 
+                //set position state
+                setPosition([x, y,z]);
+
+
             
-            
-            }
+            }, [orbitalElements, timeElapsed]);
+
+            return position;
         }
 
         
@@ -56,4 +61,4 @@ export default {
 
 
 }
-    */
+    
