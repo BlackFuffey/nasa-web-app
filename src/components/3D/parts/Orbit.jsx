@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import * as THREE from "three";
 import { Line } from "@react-three/drei";
-import OrbitPhysics from '@/physics/Orbit'
+import OrbitPhysics from '@/physics/OrbitPhysics'
 
 export default function Orbit({
     focus = [0, 0, 0],
@@ -21,8 +21,31 @@ export default function Orbit({
         eccentricity,
         inclination,
         meanLongitude,
-        ascendingNodeLongitude
+        ascendingNodeLongitude,
+        period
     );
+
+    const [position, setPosition] = useState([orbPoints[0].x, orbPoints[0].y, orbPoints[0].z]);
+
+    useEffect(() => {
+        let lastUpdate = 0;
+        // Function to update position
+        const interval = setInterval(() => {
+            lastUpdate += 0.00001157407;
+            setPosition(OrbitPhysics.getMotion(
+                semiMajorAxis,
+                eccentricity,
+                ascendingNodeLongitude,
+                meanLongitude,
+                meanAnonmalyAtEpoch,
+                period,
+                lastUpdate
+            ));
+        }, 100);  // Update every 100 milliseconds (0.1 seconds)
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <group>
@@ -37,7 +60,7 @@ export default function Orbit({
 
             {/* Place each child (planet) on the orbit */}
             {
-                React.cloneElement(child, { position: [orbPoints[0].x, orbPoints[0].y, orbPoints[0].z] })
+                React.cloneElement(child, { position: position})
             }
             {                console.log({color, orb: orbPoints[0]})}
 
