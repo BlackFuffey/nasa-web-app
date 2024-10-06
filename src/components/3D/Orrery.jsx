@@ -27,14 +27,14 @@ export default function() {
             {<Skybox />}
             {/* Lighting */}
             <ambientLight intensity={0.5} />
-            <directionalLight position={[0,0,0]} intensity={2} />
+            <directionalLight position={[10, 10, 5]} intensity={1} />
 
             {/* Orbit Controls */}
             <OrbitControls />
             <axesHelper args={[5]} />
             
             {/* Sun */}
-            {<CelesObj radius={sunRadius} color='yellow'/>}
+            {<CelesObj name="sun" radius={sunRadius} color='yellow'/>}
 
             {/* Planets */}
             {Object.entries(PlanetConsts.orbit).map(([key, value]) => (
