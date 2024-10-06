@@ -48,7 +48,6 @@ export default function Orbit({
                 );
 
                 setPosition(newPos)
-                console.log(historyRef.current);
             })
         }, 10);  // Update every 100 milliseconds (0.1 seconds)
 

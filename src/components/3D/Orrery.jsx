@@ -24,17 +24,17 @@ export default function() {
 
     return (
         <Canvas className="absolute inset-0 h-full overflow-hidden">
-            {/*<Skybox />*/}
+            {<Skybox />}
             {/* Lighting */}
             <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <directionalLight position={[0,0,0]} intensity={2} />
 
             {/* Orbit Controls */}
             <OrbitControls />
             <axesHelper args={[5]} />
             
             {/* Sun */}
-            {<CelesObj radius={sunRadius} color='black'/>}
+            {<CelesObj radius={sunRadius} color='yellow'/>}
 
             {/* Planets */}
             {Object.entries(PlanetConsts.orbit).map(([key, value]) => (
@@ -54,7 +54,7 @@ export default function() {
             )}
 
             {/* Comets */}
-{/*Object.entries(CometConsts).map(([key, value]) => (
+{Object.entries(CometConsts).map(([key, value]) => (
                 <Orbit focus={[0,0,0]} 
                     key={`orbit-comet-${key}`}
                     semiMajorAxis={value.semiMajorAxis}
@@ -68,10 +68,10 @@ export default function() {
                 >
                     <CelesObj name={`comet-${key}`} radius={value.radius} color='green'/>
             </Orbit>) 
-            )*/}
+            )}
 
             {/* Astroids */}
-            {/*Object.entries(AsteroidConsts.orbit).map(([key, value]) => (
+            {Object.entries(AsteroidConsts.orbit).map(([key, value]) => (
                 <Orbit focus={[0,0,0]} 
                     key={`orbit-astroid-${key}`}
                     semiMajorAxis={value.semiMajorAxis}
@@ -85,7 +85,7 @@ export default function() {
                 >
                     <CelesObj name={`planet-${key}`} radius={value.radius} color='red'/>
             </Orbit>) 
-            )*/}
+            )}
         </Canvas>
     );
 }
