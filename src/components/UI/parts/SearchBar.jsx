@@ -46,6 +46,7 @@ export default function() {
     const [showSearch, setShowSearch] = useState(false);
     const [searchRes, setSearchRes] = useState([]);
     const searchEntryRef = useRef([
+        {name: "sun", type: 'planet'},
         ...Object.entries(PlanetConsts.orbit).map(([key]) => {return {name:key, type:"Planet"}}),
         ...Object.entries(CometConsts).map(([key]) => {return {name:key, type:"Comet"}}),
         ...Object.entries(AsteroidConsts.orbit).map(([key]) => {return {name:key, type:"Asteroid"}}),
