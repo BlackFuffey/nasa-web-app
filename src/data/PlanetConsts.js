@@ -7,7 +7,9 @@ export default {
             meanLongitude: 252.25032350,
             perihelionLongitude: 77.45779628,
             ascendingNodeLongitude: 48.33076593,
-            radius: 0.000016308155080213903
+            radius: 0.000016308155080213903,
+            meanAnomalyAtEpoch: 174.79,
+            period: 88,
         },     
         venus: {
             semiMajorAxis: 0.72333566,
@@ -16,7 +18,9 @@ export default {
             meanLongitude: 181.97909950,
             perihelionLongitude: 131.60246718,
             ascendingNodeLongitude: 76.67984255,
-            radius: 0.000040453208556149734
+            radius: 0.000040453208556149734,
+            meanAnomalyAtEpoch: 50.115,
+            period: 225
         },          
         earth: {
             semiMajorAxis: 1.00000261,
@@ -25,7 +29,9 @@ export default {
             meanLongitude: 100.46457166,
             perihelionLongitude: 102.93768193,
             ascendingNodeLongitude: 0.0,
-            radius: 0.000042586898395721926
+            radius: 0.000042586898395721926,
+            meanAnomalyAtEpoch: 357.5291,
+            period: 365.256
         },
         mars: {
             semiMajorAxis: 1.52371034,
@@ -34,7 +40,9 @@ export default {
             meanLongitude: -4.55343205,
             perihelionLongitude: -23.94362959,
             ascendingNodeLongitude: 49.55953891,
-            radius: 0.000022657085561497327
+            radius: 0.000022657085561497327,
+            meanAnomalyAtEpoch: 19.41,
+            period: 687
         },
         jupiter: {
             semiMajorAxis: 5.20288700,
@@ -43,7 +51,9 @@ export default {
             meanLongitude: 34.39644051,
             perihelionLongitude: 14.72847983,
             ascendingNodeLongitude: 100.47390909,
-            radius: 0.00046731951871657756
+            radius: 0.00046731951871657756,
+            meanAnomalyAtEpoch: 20.020,
+            period: 4330.6
         },
         saturn: {
             semiMajorAxis: 9.53667594,
@@ -52,7 +62,9 @@ export default {
             meanLongitude: 49.95424423,
             perihelionLongitude: 92.59887831,
             ascendingNodeLongitude: 113.66242448,
-            radius: 0.0003892513368983957
+            radius: 0.0003892513368983957,
+            meanAnomalyAtEpoch: 316.9996,
+            period: 10775.7
         },
         uranus: {
             semiMajorAxis: 19.18916464,
@@ -61,7 +73,9 @@ export default {
             meanLongitude: 313.23810451,
             perihelionLongitude: 170.95427630,
             ascendingNodeLongitude: 74.01692503,
-            radius: 0.00016953208556149733
+            radius: 0.00016953208556149733,
+            meanAnomalyAtEpoch: 142.27,
+            period: 30687
         },
         neptune: {
             semiMajorAxis: 30.06992276,
@@ -70,7 +84,9 @@ export default {
             meanLongitude: -55.12002969,
             perihelionLongitude: 44.96476227,
             ascendingNodeLongitude: 131.78422574,
-            radius: 0.0001645855614973262
+            radius: 0.0001645855614973262,
+            meanAnomalyAtEpoch: 357.85,
+            period: 60190
         },          
     },
 }
