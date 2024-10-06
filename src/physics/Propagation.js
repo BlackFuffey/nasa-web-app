@@ -44,11 +44,11 @@ export default {
 
                 //position of object in 3D space
                 const x = r * (Math.cos(Ω) * Math.cos(w + ν) - Math.sin(Ω) * Math.sin(w + ν) * Math.cos(i));
-                
+                const y = r * (Math.cos(Ω) * Math.cos(w + ν) + Math.sin(Ω) * Math.sin(w + ν) * Math.cos(i));
+                const z = r * (Math.sin(i) * Math.sin(w + ν));
+
                 //set position state
                 setPosition([x, y,z]);
-
-
             
             }, [orbitalElements, timeElapsed]);
 
