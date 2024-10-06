@@ -4,16 +4,18 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 export let setTrackObj;
+export let trackingObj;
 
 export function CameraTracker() {
     const cameraRef = useRef();
-    const trackObjRef = useRef('planet-sun');
+    const trackObjRef = useRef(null);
 
     const setTrackObjInner = (value) => trackObjRef.current = value
 
     useEffect(() => window.setTrack = setTrackObjInner, [])
 
     useEffect(() => setTrackObj = setTrackObjInner, []);
+    useEffect(() => trackingObj = trackObjRef.current, []);
 
     useFrame(({ camera, scene }) => {
         // Find the object in the scene by name
@@ -27,7 +29,7 @@ export function CameraTracker() {
             // Optionally, update the camera position to follow the target object
             // (in this case, we keep the camera at a fixed distance on the Z axis)
             camera.position.lerp(new THREE.Vector3(target.position.x, target.position.y, target.position.z + 5), 0.1);
-            camera.zoom = THREE.MathUtils.lerp(camera.zoom, 3, 0.1)
+            camera.zoom = THREE.MathUtils.lerp(camera.zoom, 5, 0.1)
             camera.updateProjectionMatrix();
         }
     });

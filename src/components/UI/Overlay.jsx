@@ -1,4 +1,5 @@
 import { NextUIProvider } from "@nextui-org/react";
+import InfoPanel from "./parts/InfoPanel";
 import SearchBar from "./parts/SearchBar";
 
 export default function() {
