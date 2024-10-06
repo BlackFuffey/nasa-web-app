@@ -13,14 +13,14 @@ export default function() {
     const sunRadius = 0.004649183820514384;
 
     const colors = {
-        mercury: 'blue',
-        venus: 'red',
-        earth: 'cyan',
-        mars: 'black',
-        jupiter: "gray",
-        saturn: 'green',
-        uranus: 'purple',
-        neptune: 'brown'
+        mercury: 'brown',
+        venus: 'orange',
+        earth: 'blue',
+        mars: 'red',
+        jupiter: "lightyellow",
+        saturn: 'lemonchiffon',
+        uranus: 'cyan',
+        neptune: 'darkblue'
     }
 
     return (
@@ -64,9 +64,9 @@ export default function() {
                     ascendingNodeLongitude={value.ascendingNodeLongitude}
                     period={value.period}
                     meanAnonmalyAtEpoch={value.meanAnonmalyAtEpoch}
-                    color="green"
+                    color="gray"
                 >
-                    <CelesObj name={`comet-${key}`} radius={value.radius} color='green'/>
+                    <CelesObj name={`comet-${key}`} radius={value.radius} color='lightgray'/>
             </Orbit>) 
             )}
 
@@ -81,9 +81,9 @@ export default function() {
                     ascendingNodeLongitude={value.ascendingNodeLongitude}
                     period={value.period}
                     meanAnonmalyAtEpoch={value.meanAnomalyAtEpoch}
-                    color="red"
+                    color="darkgray"
                 >
-                    <CelesObj name={`planet-${key}`} radius={value.radius} color='red'/>
+                    <CelesObj name={`planet-${key}`} radius={value.radius} color='darkgray'/>
             </Orbit>) 
             )}
         </Canvas>
