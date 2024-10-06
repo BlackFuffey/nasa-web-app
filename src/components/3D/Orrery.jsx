@@ -6,6 +6,7 @@ import PlanetConsts from '@/data/PlanetConsts';
 import AsteroidConsts from '@/data/AsteroidConsts';
 import CometConsts from '@/data/CometConsts';
 import Skybox from './parts/Skybox';
+import { AxesHelper } from 'three';
 
 export default function() {
     const sunRadius = 0.004649183820514384;
@@ -30,6 +31,7 @@ export default function() {
 
             {/* Orbit Controls */}
             <OrbitControls />
+            <axesHelper args={[5]} />
             
             {/* Sun */}
             {<CelesObj radius={sunRadius} color='black'/>}

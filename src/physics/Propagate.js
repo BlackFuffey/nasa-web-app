@@ -1,3 +1,6 @@
+import * as THREE from 'three'
+
+
 // Helper function to solve Kepler's equation using Newton-Raphson method
 function solveKepler(e, M) {
     let tol = 1.0e-14;
@@ -27,8 +30,9 @@ function solveKepler(e, M) {
 }
 
 // Function to calculate the position of the object at a given time (clock)
-function computePosition(e, a, T, clock) {
+export function computePosition(e, a, T, clock) {
     // Step 1: Compute the mean anomaly (M)
+
     let n = 2 * Math.PI / T; // Mean motion
     let tau = 0; // Time of pericenter passage (assumed to be zero)
     let M = n * (clock - tau); // Mean anomaly
@@ -46,26 +50,11 @@ function computePosition(e, a, T, clock) {
     // Step 4: Rotate the coordinates using THREE.js (as math tools)
     let point = new THREE.Vector3(s_x, s_y, s_z);
 
-    // Rotation 1 (about Y-axis by pi/5)
-    let rotation1 = new THREE.Matrix4().makeRotationY(Math.PI / 5);
-    point.applyMatrix4(rotation1);
 
     // Rotation 2 (about Z-axis by pi/4)
-    let rotation2 = new THREE.Matrix4().makeRotationZ(Math.PI / 4);
-    point.applyMatrix4(rotation2);
-
-    // Rotation 3 (about X-axis by pi/4)
-    let rotation3 = new THREE.Matrix4().makeRotationX(Math.PI / 4);
-    point.applyMatrix4(rotation3);
+    //let rotation2 = new THREE.Matrix4().makeRotationZ(Math.PI*100);
+    //point.applyMatrix4(rotation2);
 
     return point;
 }
 
-// Example usage
-let e = 0.1;          // Eccentricity
-let a = 10000;        // Semi-major axis (in arbitrary units, e.g., km)
-let T = 86400;        // Orbital period (in seconds, e.g., 1 day)
-let clock = 43200;    // Time for which to compute position (in seconds, e.g., halfway through the orbit)
-
-let position = computePosition(e, a, T, clock);
-console.log(position); // Output: the 3D coordinates [x, y, z]
