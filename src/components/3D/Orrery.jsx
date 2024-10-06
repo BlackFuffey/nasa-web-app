@@ -7,7 +7,7 @@ import AsteroidConsts from '@/data/AsteroidConsts';
 import CometConsts from '@/data/CometConsts';
 import Skybox from './parts/Skybox';
 import { AxesHelper } from 'three';
-import { CameraTracker } from './parts/CameraTracker';
+import { CameraTracker, setTrackObj } from './parts/CameraTracker';
 
 export default function() {
     const sunRadius = 0.004649183820514384;
@@ -24,7 +24,7 @@ export default function() {
     }
 
     return (
-        <Canvas className="absolute inset-0 h-full overflow-hidden">
+        <Canvas className="absolute inset-0 h-full overflow-hidden" onMouseDown={() => setTrackObj(null)}>
             {<Skybox />}
             {/* Lighting */}
             <ambientLight intensity={0.5} />
