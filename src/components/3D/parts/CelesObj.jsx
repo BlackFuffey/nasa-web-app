@@ -8,7 +8,7 @@ export default function OptimizedObject({position=[0,0,0], precision=64, radius=
 
     if (!doCompute) doCompute = () => {};
     
-    const distanceThreshold = 7;
+    const distanceThreshold = 14;
 
   useFrame(() => {
     const object = meshRef.current;
