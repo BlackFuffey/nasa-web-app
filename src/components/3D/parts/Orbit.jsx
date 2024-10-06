@@ -35,7 +35,7 @@ export default function Orbit({
 
     const doCompute = (value) => doComputeRef.current = value;
 
-    useEffect(async () => {
+    useEffect(() => (async () => {
         let lastUpdate = 0;
         // Function to update position
         const interval = setInterval( async () => {
@@ -62,7 +62,7 @@ export default function Orbit({
 
         // Cleanup interval on component unmount
         return () => clearInterval(interval);
-    }, []);
+    })(), []);
 
 
     return (

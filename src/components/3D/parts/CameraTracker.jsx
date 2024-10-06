@@ -21,7 +21,6 @@ export function CameraTracker() {
         // Find the object in the scene by name
         const target = scene.getObjectByName(trackObjRef.current);
 
-        console.log({scene: scene.children, track: trackObjRef.current, target, camera: cameraRef.current})
         if (target && cameraRef.current) {
             // Make the camera look at the target object
             camera.lookAt(target.position);

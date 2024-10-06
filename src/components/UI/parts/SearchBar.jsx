@@ -12,36 +12,9 @@ import { SearchIcon } from "./SearchIcon";
 import PlanetConsts from "@/data/PlanetConsts"
 import CometConsts from "@/data/CometConsts"
 import AsteroidConsts from "@/data/AsteroidConsts"
-import { useFrame } from '@react-three/fiber'
 import { setTrackObj } from "../../3D/parts/CameraTracker";
 
-const SearchResultTable = ({ results, onItemClick }) => (
-    <Table
-        aria-label="Search results"
-        css={{ height: "auto", minWidth: "100%" }}
-    >
-        <Table.Header>
-            <Table.Column>Name</Table.Column>
-            <Table.Column>Description</Table.Column>
-        </Table.Header>
-        <Table.Body>
-            {results.map((result, index) => (
-                <Table.Row key={index} onClick={() => onItemClick(result)}>
-                    <Table.Cell>{result.name}</Table.Cell>
-                    <Table.Cell>{result.description}</Table.Cell>
-                </Table.Row>
-            ))}
-        </Table.Body>
-    </Table>
-);
-
-// Usage example
-const handleItemClick = (item) => {
-    console.log("Clicked item:", item);
-};
-
-
-export default function() {
+export default function({selecState}) {
     const [searchContent, setSerchContent] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [searchRes, setSearchRes] = useState([]);
@@ -62,9 +35,10 @@ export default function() {
         ))
     }, [searchContent])
 
-    const teleport = (name) => {
+    const teleport = (name, type) => {
         console.log('teleporting to '+name);
-        setTrackObj(name);
+        setTrackObj(`${type.toLowerCase()}-${name}`);
+        selecState[1](name==="sun" ? "sun star" : name+" "+type);
     }
 
     return (
@@ -100,7 +74,7 @@ export default function() {
                             <TableRow 
                                 className="text-white pointer-events-auto" 
                                 key={`search-${Math.random().toString(36).substring(2, 8)}`}
-                                onMouseDown={() => teleport(`${e.type.toLowerCase()}-${e.name}`)}
+                                onMouseDown={() => teleport(e.name, e.type)}
                             >
                                 <TableCell>{e.name}</TableCell>
                                 <TableCell>{e.type}</TableCell>
