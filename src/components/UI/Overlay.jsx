@@ -4,7 +4,9 @@ import SearchBar from "./parts/SearchBar";
 export default function() {
     return (
         <NextUIProvider>
-            <SearchBar />
+            <div className="absolute inset-0 dark h-full w-full z-10 m-3 pointer-events-none">
+                <SearchBar/>
+            </div>
         </NextUIProvider>
     )
 }

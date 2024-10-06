@@ -5,12 +5,14 @@ import CelesObj from './parts/CelesObj';
 import PlanetConsts from '@/data/PlanetConsts';
 import AsteroidConsts from '@/data/AsteroidConsts';
 import CometConsts from '@/data/CometConsts';
+import Skybox from './parts/Skybox';
 
 export default function() {
     const sunRadius = 0.004649183820514384;
 
     return (
-        <Canvas className="h-[100vh]">
+        <Canvas className="absolute inset-0 h-full overflow-hidden">
+            <Skybox />
             {/* Lighting */}
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />

@@ -1,15 +1,15 @@
 import '@/style/App.css';
 import React from 'react';
-import Ori from './components/3D/Ori';
+import Orrery from './components/3D/Orrery';
 import Overlay from './components/UI/Overlay';
 
 function App() {
     
     return (
-        <>
-            <Overlay/>
-            <Ori />
-        </>
+        <div className="h-screen w-screen overflow-hidden">
+            <Orrery />
+            <Overlay />
+        </div>
     );
 }
 
